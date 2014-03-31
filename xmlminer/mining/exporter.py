@@ -15,10 +15,10 @@ class Exporter():
         li.append(('Walmart.com', WalMartProvider()))
         return li
 
-    def export(self):
+    def export(self, filename='categories.xls'):
         for provider in self.providers:
             root = provider[1].get_category_xml()
             sheet = FitSheetWrapper(self.workbook.add_sheet(provider[1].name))
             provider[1].row = 0
             provider[1].process(0, root, sheet, 0, provider[1].providerInfoIndex)
-            self.workbook.save('categories.xls')
+            self.workbook.save(filename)
