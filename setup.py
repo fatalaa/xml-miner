@@ -8,5 +8,7 @@ setup(
     license='MIT',
     author='Tibor',
     author_email='motibi89@yahoo.com',
-    description=''
+    description='',
+    install_requires = ['requests',
+                        'xlwt']
 )
