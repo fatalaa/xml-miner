@@ -9,6 +9,6 @@ setup(
     author='Tibor',
     author_email='motibi89@yahoo.com',
     description='',
-    install_requires = ['requests',
-                        'xlwt']
+    install_requires = ['requests == 2.2.1',
+                        'xlwt == 0.7.5']
 )
