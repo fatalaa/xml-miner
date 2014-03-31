@@ -30,7 +30,7 @@ class Exporter():
             provider[1].process(0, root, sheet, 0, provider[1].providerInfoIndex)
             output = StringIO()
             self.workbook.save(output)
-            return output.getvalue()
+        return output.getvalue()
 
 
     @async
