@@ -7,8 +7,8 @@ from xml.dom import minidom
 
 class Provider(object):
 
-    PROPERTY_FILE_NAME = 'defaultProviders.properties'
-    PROPERTY_FILE_WITH_PATH = (os.path.dirname(os.path.realpath(__file__)) + os.sep + PROPERTY_FILE_NAME).replace('\\', '/')
+    #PROPERTY_FILE_NAME = 'defaultProviders.properties'
+    #PROPERTY_FILE_WITH_PATH = (os.path.dirname(os.path.realpath(__file__)) + os.sep + PROPERTY_FILE_NAME).replace('\\', '/')
 
     def __init__(self):
         self.name = str()
@@ -32,23 +32,12 @@ class Provider(object):
             tab += "----"
         return tab
 
-    @staticmethod
-    def value_of(sectionName):
-        provider = Provider()
-        configParser = ConfigParser.RawConfigParser()
-        configParser.read(Provider.PROPERTY_FILE_WITH_PATH)
-        provider.name = configParser.get(sectionName, 'name')
-        provider.url = configParser.get(sectionName, 'url')
-        provider.providerInfoIndex = configParser.getint(sectionName, 'index')
-        return provider
-
 class ShoppingDotComProvider(Provider):
     def __init__(self):
         super(ShoppingDotComProvider, self).__init__()
-        tmp = Provider.value_of('Shopping.com')
-        self.name = tmp.name
-        self.url = tmp.url
-        self.providerInfoIndex = tmp.providerInfoIndex
+        self.name = 'Shopping.com'
+        self.url = 'http://sandbox.api.ebaycommercenetwork.com/publisher/3.0/rest/CategoryTree?apiKey=78b0db8a-0ee1-4939-a2f9-d3cd95ec0fcc&visitorUserAgent&visitorIPAddress&trackingId=7000610&categoryId=0&showAllDescendants=true'
+        self.providerInfoIndex = 0
 
 
     def get_category_xml(self):
@@ -84,10 +73,9 @@ class EbayProvider(Provider):
 class WalMartProvider(Provider):
     def __init__(self):
         super(WalMartProvider, self).__init__()
-        tmp = Provider.value_of('Walmart.com')
-        self.name = tmp.name
-        self.url = tmp.url
-        self.providerInfoIndex = tmp.providerInfoIndex
+        self.name = 'Walmart.com'
+        self.url = 'http://api.walmartlabs.com/v1/taxonomy?apiKey=mgdmgwbhhku48fuz3yhq5g77&format=xml'
+        self.providerInfoIndex = 1
 
     def get_category_xml(self):
         response = requests.get(self.url)
