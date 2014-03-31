@@ -3,6 +3,7 @@ import xlwt
 from xmlminer.providers.provider import ShoppingDotComProvider, WalMartProvider
 from fitsheetwrapper import FitSheetWrapper
 from threading import Thread
+from cStringIO import StringIO
 
 def async(function):
     def wrapper(*args, **kwargs):
@@ -27,7 +28,9 @@ class Exporter():
             sheet = FitSheetWrapper(self.workbook.add_sheet(provider[1].name))
             provider[1].row = 0
             provider[1].process(0, root, sheet, 0, provider[1].providerInfoIndex)
-            self.workbook.save(filename)
+            output = StringIO()
+            self.workbook.save(output)
+            return output.getvalue()
 
 
     @async
