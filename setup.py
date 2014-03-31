@@ -1,4 +1,8 @@
 from setuptools import setup
+import os
+
+PROPS_FILE_NAME = 'defaultProviders.properties'
+PROPS_PATH = os.getcwd() + os.sep + 'xmlminer' + os.sep + 'providers' + os.sep + PROPS_FILE_NAME
 
 setup(
     name='xml-miner',
@@ -10,5 +14,6 @@ setup(
     author_email='motibi89@yahoo.com',
     description='',
     install_requires = ['requests == 2.2.1',
-                        'xlwt == 0.7.5']
+                        'xlwt == 0.7.5'],
+    data_files = [PROPS_PATH]
 )
